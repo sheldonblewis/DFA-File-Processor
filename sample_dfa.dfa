@@ -1,0 +1,86 @@
+.ALPHABET
+0-9
+-
+.STATES
+start
+neg
+neg_1!
+neg_1x!
+neg_1xx!
+neg_2!
+neg_24!
+neg_24x!
+neg_25!
+neg_256!
+neg_26!
+neg_3!
+neg_3x!
+pos_4!
+pos_4x!
+pos_4xx!
+pos_5!
+pos_50!
+pos_50x!
+pos_51!
+pos_512!
+pos_52!
+pos_6!
+pos_6x!
+zero!
+failed
+.TRANSITIONS
+start   -       neg
+start   1-4     pos_4
+start   5       pos_5
+start   6-9     pos_6
+start   0       zero
+zero    - 0-9   failed
+neg     1       neg_1
+neg     2       neg_2
+neg     3-9     neg_3
+pos_4   0-9     pos_4x
+pos_4   -       failed
+pos_4x  0-9     pos_4xx
+pos_4x  -       failed
+pos_4xx - 0-9   failed
+neg_1   0-9     neg_1x
+neg_1   -       failed
+neg_1x  0-9     neg_1xx
+neg_1x  -       failed
+neg_1xx - 0-9   failed
+pos_5   0       pos_50
+pos_5   1       pos_51
+pos_5   2-9     pos_52
+pos_5   -       failed
+pos_50  -       failed
+pos_50  0-9     pos_50x
+pos_50x - 0-9   failed
+pos_51  0-2     pos_512
+pos_512 - 0-9   failed
+pos_51  - 3-9   failed
+pos_52  - 0-9   failed
+neg_2   -       failed
+neg_2   0-4     neg_24
+neg_2   5       neg_25
+neg_2   6-9     neg_26
+neg_24  -       failed
+neg_24  0-9     neg_24x
+neg_24x - 0-9   failed
+neg_25  0-6     neg_256
+neg_256 - 0-9   failed
+neg_25  - 7-9   failed
+neg_26  - 0-9   failed
+pos_6   -       failed
+pos_6   0-9     pos_6x
+pos_6x  - 0-9   failed
+neg_3   -       failed
+neg_3   0-9     neg_3x
+neg_3x  - 0-9   failed
+.INPUT
+135
+500
+512
+-256
+-5
+-500
+0
